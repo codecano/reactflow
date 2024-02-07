@@ -46,7 +46,7 @@ function Flow() {
 
   return (
     <div style={{ height: '80%', width: '100%' }}>
-      <h4 className='text-center my-3'>Welcome to React Flow</h4>
+      <h4 className='text-center my-3'>Welcome to Codecano</h4>
       {/* <div className='container mb-3'>
         <div class="mb-3">
           <input type="text" placeholder='Enter text' class="form-control" />
