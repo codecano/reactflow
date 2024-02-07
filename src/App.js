@@ -1,25 +1,70 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useCallback } from 'react';
+import ReactFlow, {
+  Controls,
+  Background,
+  applyNodeChanges,
+  applyEdgeChanges,
+} from 'reactflow';
+import 'reactflow/dist/style.css';
 
-function App() {
+const initialNodes = [
+  {
+    id: '1',
+    data: { label: 'Hello' },
+    position: { x: 0, y: 0 },
+    type: 'input',
+  },
+  {
+    id: '2',
+    data: { label: 'World' },
+    position: { x: 50, y: 100 },
+  },
+  {
+    id: '3',
+    data: { label: 'Connect' },
+    position: { x: 100, y: 200 },
+  },
+];
+
+const initialEdges = [
+  { id: '1-2', source: '1', target: '2', type: 'step' },
+  { id: '2-3', source: '2', target: '3', type: 'line' },
+];
+
+function Flow() {
+  const [nodes, setNodes] = useState(initialNodes);
+  const [edges, setEdges] = useState(initialEdges);
+
+  const onNodesChange = useCallback(
+    (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
+    [],
+  );
+  const onEdgesChange = useCallback(
+    (changes) => setEdges((eds) => applyEdgeChanges(changes, eds)),
+    [],
+  );
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ height: '80%', width: '100%' }}>
+      <h4 className='text-center my-3'>Welcome to React Flow</h4>
+      {/* <div className='container mb-3'>
+        <div class="mb-3">
+          <input type="text" placeholder='Enter text' class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">Add New</button>
+      </div> */}
+      <ReactFlow
+        nodes={nodes}
+        onNodesChange={onNodesChange}
+        edges={edges}
+        onEdgesChange={onEdgesChange}
+        fitView
+      >
+        <Background />
+        <Controls />
+      </ReactFlow>
     </div>
   );
 }
 
-export default App;
+export default Flow;
