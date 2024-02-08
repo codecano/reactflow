@@ -1,5 +1,6 @@
-
-html, body, #root {
+html,
+body,
+#root {
   width: 100%;
   height: 100%;
   margin: 0;
@@ -14,6 +15,21 @@ html, body, #root {
   top: 10px;
   z-index: 4;
   font-size: 12px;
+}
+
+.updatenode__controls .nodeButton {
+  margin-bottom: 10px;
+}
+
+button {
+  background-color: blueviolet;
+  color: white;
+  border-color: blueviolet;
+}
+
+.updatenode__controls .nodeForm {
+  padding: 10px;
+  border: 1px solid #ccc;
 }
 
 .updatenode__controls label {
